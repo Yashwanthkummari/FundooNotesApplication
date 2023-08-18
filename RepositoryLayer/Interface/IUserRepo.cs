@@ -9,7 +9,7 @@ namespace RepositoryLayer.Interface
     public interface IUserRepo
     {
         public UserEntity UserReg(UserRegModel model);
-        public UserEntity UserLogin(UserLoginModel model);
+        public string UserLogin(UserLoginModel model);
 
     }
 }

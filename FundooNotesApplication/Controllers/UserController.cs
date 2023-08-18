@@ -40,12 +40,12 @@ namespace FundooNotesApplication.Controllers
             var result =userBusiness.UserLogin(model);
             if (result != null)
             {
-                return this.Ok(new { Succes = true, Message = "User Login Sucessfully", Data = result });
+                return this.Ok(new { Success = true, Message = "User Login Sucessfully" ,data =result});
 
             }
             else
             {
-                return this.BadRequest(new { Succes = false, Message = "User Login UnSucessfull", Data = result });
+                return this.BadRequest(new { Success = false, Message = "User Login UnSucessfull" });
 
             }
         }

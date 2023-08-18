@@ -1,11 +1,14 @@
 ﻿using CommonLayer.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 
 namespace RepositoryLayer.Services
@@ -51,16 +54,35 @@ namespace RepositoryLayer.Services
             }
         }
 
-        public UserEntity UserLogin(UserLoginModel model)
+        public string GenerateJwtToken(string Email, long UserId)
+        { 
+            var claims = new List<Claim>
+            {
+
+               new Claim("UserId", UserId.ToString()),
+               new Claim("Email", Email)
+             
+                // Add any other claims you want to include in the token
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(configuration["JwtSettings:Issuer"], configuration["JwtSettings:Audience"], claims, DateTime.Now, DateTime.Now.AddHours(15), creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public string UserLogin(UserLoginModel model)
         {
             try
             {
 
-                var userEntity= fundooContext.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+                var EmailValidity = fundooContext.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
-                if (userEntity != null)
+                if (EmailValidity != null)
                 {
-                    return userEntity;  
+                    string JwtToken = GenerateJwtToken(EmailValidity.Email, EmailValidity.UserId);
+                    return JwtToken;
                 }
 
                 return null;
