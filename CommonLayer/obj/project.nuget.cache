@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "RtAFzDcPF4zK07hWJozF5b26aqKsSeYOMmQA+ZooxjNuz0pTMdN45MiwiKUutM/ZxC3vqsCCyVNHxc6WgrrJhw==",
+  "dgSpecHash": "aFte+2KTUgukUf0aaPKtoTs/vdqZykpmz2nTY6K5/mGl3ayU9xPP1vR2cpFXx1lLY8KAqeHbroM9Gw0MPKP+Hg==",
   "success": true,
   "projectFilePath": "F:\\FundooNotesApplication\\CommonLayer\\CommonLayer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

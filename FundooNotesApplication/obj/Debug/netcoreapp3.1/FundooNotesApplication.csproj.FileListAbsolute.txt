@@ -49,3 +49,8 @@ F:\FundooNotesApplication\FundooNotesApplication\obj\Debug\netcoreapp3.1\FundooN
 F:\FundooNotesApplication\FundooNotesApplication\obj\Debug\netcoreapp3.1\FundooNotesApplication.dll
 F:\FundooNotesApplication\FundooNotesApplication\obj\Debug\netcoreapp3.1\FundooNotesApplication.pdb
 F:\FundooNotesApplication\FundooNotesApplication\obj\Debug\netcoreapp3.1\FundooNotesApplication.genruntimeconfig.cache
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\FundooNotesApplication\FundooNotesApplication\obj\Debug\netcoreapp3.1\FundooNotesApplication.MvcApplicationPartsAssemblyInfo.cs

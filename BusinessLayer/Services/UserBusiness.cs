@@ -30,5 +30,16 @@ namespace BusinessLayer.Services
                 throw (ex);
             }
         }
+        public UserEntity UserLogin(UserLoginModel model)
+        {
+            try
+            {
+                return _userRepo.UserLogin(model);
+            }
+            catch (Exception )
+            {
+                throw ;
+            }
+        }
     }
 }

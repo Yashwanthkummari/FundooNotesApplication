@@ -32,5 +32,22 @@ namespace FundooNotesApplication.Controllers
 
             }
         }
+        [HttpPost]
+        [Route("Login")]
+
+        public IActionResult Login(UserLoginModel model)
+        {
+            var result =userBusiness.UserLogin(model);
+            if (result != null)
+            {
+                return this.Ok(new { Succes = true, Message = "User Login Sucessfully", Data = result });
+
+            }
+            else
+            {
+                return this.BadRequest(new { Succes = false, Message = "User Login UnSucessfull", Data = result });
+
+            }
+        }
     }
 }
