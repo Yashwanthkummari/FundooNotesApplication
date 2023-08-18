@@ -101,6 +101,8 @@ namespace RepositoryLayer.Services
                 if (EmailValidity != null)
                 {
                     var Token = GenerateJwtToken(EmailValidity.Email, EmailValidity.UserId);
+                    MSMQ msmq = new MSMQ();
+                    msmq.sendData2Queue(Token);
                     return Token;
                 }
                 else

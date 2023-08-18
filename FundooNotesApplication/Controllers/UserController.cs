@@ -59,7 +59,7 @@ namespace FundooNotesApplication.Controllers
             var result = userBusiness.ForgetPassword(model);
             if (result != null)
             {
-                return Ok(new { Success = true, Message = "Token sent Successfully to  Updated password ",data=result });
+                return Ok(new { Success = true, Message = "Token sent Successfully to  Updated password " });
 
             }
             else
