@@ -76,7 +76,6 @@ namespace RepositoryLayer.Services
         {
             try
             {
-
                 var EmailValidity = fundooContext.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
                 if (EmailValidity != null)
@@ -86,12 +85,33 @@ namespace RepositoryLayer.Services
                 }
 
                 return null;
-
             }
 
             catch (Exception ex)
             {
                 throw (ex);
+            }
+        }
+        public string ForgetPassword(ForgetPasswordModel model)
+        {
+            try
+            {
+                var EmailValidity = fundooContext.Users.FirstOrDefault(u => u.Email == model.Email);
+
+                if (EmailValidity != null)
+                {
+                    var Token = GenerateJwtToken(EmailValidity.Email, EmailValidity.UserId);
+                    return Token;
+                }
+                else
+
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
