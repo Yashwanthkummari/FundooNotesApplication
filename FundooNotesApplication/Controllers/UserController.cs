@@ -1,8 +1,12 @@
 ﻿using BusinessLayer.Interface;
 using BusinessLayer.Services;
 using CommonLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RepositoryLayer.Context;
+using System;
+using System.Linq;
 
 namespace FundooNotesApplication.Controllers
 {
@@ -12,9 +16,11 @@ namespace FundooNotesApplication.Controllers
     {
 
         private readonly IUserBusiness userBusiness;
-        public UserController(IUserBusiness userBusiness)
+        private readonly FundooContext _fundooContext;
+        public UserController(IUserBusiness userBusiness, FundooContext fundooContext)
         {
             this.userBusiness = userBusiness;
+            this._fundooContext = fundooContext;
         }
         [HttpPost]
         [Route("Register")]
@@ -68,5 +74,27 @@ namespace FundooNotesApplication.Controllers
 
             }
         }
+        [Authorize]
+        [HttpPost]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(ResetPasswordModel model)
+        {
+            var email = User.FindFirst(x => x.Type == "Email").Value;
+            if (email != null)
+            {
+                var result = userBusiness.ResetPassword( model);
+                if (result != null)
+                {
+                    return Ok(new { success = true, message = "Password Reseted Sucessfully" });
+                }
+                else
+                {
+                    return NotFound(new { success = false, message = "Password reset not successful" });
+                }
+            }
+            return null;
+        }
+
+
     }
 }

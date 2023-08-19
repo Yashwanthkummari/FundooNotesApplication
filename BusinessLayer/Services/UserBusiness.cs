@@ -52,5 +52,17 @@ namespace BusinessLayer.Services
                 throw;
             }
         }
+        public bool ResetPassword(ResetPasswordModel model)
+        {
+            try
+            {
+                return _userRepo.ResetPassword(model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
