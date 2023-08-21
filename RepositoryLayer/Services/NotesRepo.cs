@@ -1,4 +1,7 @@
-﻿using CommonLayer.Models;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using CommonLayer.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -7,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer.Services
 {
@@ -14,10 +18,15 @@ namespace RepositoryLayer.Services
     {
         private readonly FundooContext _fundooContext;
         private readonly IConfiguration _configuration;
-        public NotesRepo(FundooContext fundooContext, IConfiguration configuration)
+        private readonly Cloudinary _cloudinary;
+        private readonly FileService _fileService;
+
+        public NotesRepo(FundooContext fundooContext, IConfiguration configuration, Cloudinary cloudinary, FileService fileService)
         {
             this._fundooContext = fundooContext;
             this._configuration = configuration;
+            this._cloudinary = cloudinary;
+            this._fileService = fileService;
         }
         public NotesEntity CreateNotes(NotesRegModel model, long UserId)
         {
@@ -144,6 +153,42 @@ namespace RepositoryLayer.Services
             {
                 return null;
             }
+        }
+        public async Task<Tuple<int, string>> UploadImage(long NotesId, long UserId, IFormFile imageFile)
+        {
+            try
+            {
+                var note = _fundooContext.Notes.FirstOrDefault(data => data.NoteId == NotesId && data.UserId == UserId);
+                if (note != null)
+                {
+                    var fileServiceresult = await _fileService.SaveImage(imageFile);
+                    if (fileServiceresult == null)
+                    {
+                        return new Tuple<int, string>(0, fileServiceresult.Item2);
+                    }
+
+                    var uploading = new ImageUploadParams
+                    {
+                        File = new CloudinaryDotNet.FileDescription(imageFile.FileName, imageFile.OpenReadStream()),
+                    };
+                    ImageUploadResult uploadResult = await _cloudinary.UploadAsync(uploading);
+
+                    string ImageUrl = uploadResult.SecureUrl.AbsoluteUri;
+
+                    note.Image = ImageUrl;
+                    _fundooContext.Notes.Update(note);
+                    _fundooContext.SaveChanges();
+                    return new Tuple<int, string>(1, "product added with image sucessfully");
+                }
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, string>(0, "An error occured :" + ex.Message);
+            }
+
+
         }
         public bool ArchiveNotes(long NotesID, long UserId)
         {

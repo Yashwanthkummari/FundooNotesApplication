@@ -1,5 +1,6 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Services;
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,17 @@ namespace FundooNotesApplication
             services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<INotesBusiness, NotesBusiness>();
             services.AddTransient<INotesRepo, NotesRepo>();
+            services.AddTransient<FileService, FileService>();
+
+            IConfigurationSection configurationSection = Configuration.GetSection("CloudinarySettings");
+            Account account = new Account(
+                configurationSection["my_cloud_name"],
+                configurationSection["my_api_key"],
+                configurationSection["my_api_secret"]
+                );
+            Cloudinary cloudinary = new Cloudinary(account);
+            services.AddSingleton(cloudinary);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -90,6 +102,10 @@ namespace FundooNotesApplication
                     ValidAudience = Configuration["JwtSettings:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
+                Account cloudinaryAccount = new Account(
+                                           "dfjtq6pm0",//CloudinaryName
+                                           "891343748812318",//Cloudinary API key
+                                           "tzwsJF6gJL8gQJt5qvw7LP4640E");//Cloudinary API Secret
             });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

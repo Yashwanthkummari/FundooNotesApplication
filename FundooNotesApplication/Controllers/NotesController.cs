@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace FundooNotesApplication.Controllers
 {
@@ -107,6 +108,26 @@ namespace FundooNotesApplication.Controllers
                 return this.NotFound(new { sucess = false, Message = "Notes not Deleted ", Result = result });
 
             }
+        }
+        [Authorize]
+        [HttpPatch]
+        [Route("AddImage")]
+
+        public async Task<IActionResult> UploadImage(long Noteid, IFormFile image)
+        {
+            var userclaim = User.Claims.FirstOrDefault(x => x.Type == "UserId").Value;
+            int userId = int.Parse(userclaim);
+            var result = await _notesBusiness.UploadImage(Noteid, userId, image);
+            if (result.Item1 == 1)
+            {
+                return this.Ok(new { sucess = true, message = "Image uploaded Sucessfully", data = result });
+            }
+            else
+            {
+                return this.Ok(new { sucess = false, message = "Image uploaded UnSucessfull", data = result });
+
+            }
+
         }
         [Authorize]
         [HttpPatch]

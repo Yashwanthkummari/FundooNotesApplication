@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Interface;
 using CommonLayer.Models;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -41,11 +43,11 @@ namespace BusinessLayer.Services
             }
         }
 
-        public List<NotesEntity> GetNotesByID(int NotesID,long userId)
+        public List<NotesEntity> GetNotesByID(int NotesID, long userId)
         {
             try
             {
-                return _repo.GetNotesByID(NotesID,userId);
+                return _repo.GetNotesByID(NotesID, userId);
 
             }
             catch (Exception)
@@ -57,18 +59,29 @@ namespace BusinessLayer.Services
         {
             try
             {
-                return _repo.UpDateNotes(NotesID, takeaNote,userId);
+                return _repo.UpDateNotes(NotesID, takeaNote, userId);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public long DeleteNotes(long NotesID,long userId)
+        public long DeleteNotes(long NotesID, long userId)
         {
             try
             {
-                return _repo.DeleteNotes(NotesID,userId);
+                return _repo.DeleteNotes(NotesID, userId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<Tuple<int, string>> UploadImage(long NotesId, long UserId, IFormFile imageFile)
+        {
+            try
+            {
+                return await _repo.UploadImage(NotesId, UserId, imageFile);
             }
             catch (Exception)
             {
@@ -86,6 +99,7 @@ namespace BusinessLayer.Services
                 throw;
             }
         }
+        
         public bool ArchiveNotes(long NotesID, long UserId)
         {
             try

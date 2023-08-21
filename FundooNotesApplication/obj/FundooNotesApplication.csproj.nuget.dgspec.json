@@ -44,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.22.0, )"
+            },
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -129,6 +133,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.22.0, )"
+            },
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -219,6 +227,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.22.0, )"
+            },
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -331,6 +343,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.22.0, )"
+            },
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
