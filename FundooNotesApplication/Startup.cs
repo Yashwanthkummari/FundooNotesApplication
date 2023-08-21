@@ -39,6 +39,8 @@ namespace FundooNotesApplication
             services.AddControllers();
             services.AddTransient<IUserBusiness, UserBusiness>();
             services.AddTransient<IUserRepo, UserRepo>();
+            services.AddTransient<INotesBusiness, NotesBusiness>();
+            services.AddTransient<INotesRepo, NotesRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
