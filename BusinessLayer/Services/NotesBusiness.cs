@@ -75,5 +75,49 @@ namespace BusinessLayer.Services
                 throw;
             }
         }
+        public string UpdateColour(long NotesID, long UserId, string colour)
+        {
+            try
+            {
+                return _repo.UpdateColour(NotesID, UserId, colour);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool ArchiveNotes(long NotesID, long UserId)
+        {
+            try
+            {
+                return _repo.ArchiveNotes(NotesID, UserId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool PinNotes(long NotesID, long UserId)
+        {
+            try
+            {
+                return _repo.PinNotes(NotesID, UserId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool TrashNotes(long NotesID, long UserId)
+        {
+            try
+            {
+                return _repo.TrashNotes(NotesID, UserId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

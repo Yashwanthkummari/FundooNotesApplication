@@ -108,6 +108,84 @@ namespace FundooNotesApplication.Controllers
 
             }
         }
+        [Authorize]
+        [HttpPatch]
+        [Route("UpdateColour")]
+
+        public IActionResult UpdateColour(long NotesID, string colour)
+        {
+            long userId = Convert.ToInt64(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+            var result = _notesBusiness.UpdateColour(NotesID, userId, colour);
+            if (result != null)
+            {
+                return this.Ok(new { sucess = true, Message = "Colour Updated Sucessfully", Result = result });
+
+            }
+            else
+            {
+                return this.NotFound(new { sucess = false, Message = "Colour not updated ", Result = result });
+
+            }
+        }
+
+        [Authorize]
+        [HttpPatch]
+        [Route("Archeive Notes")]
+
+        public IActionResult ArcheiveNotes(long NotesID)
+        {
+            long userId = Convert.ToInt64(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+            var result = _notesBusiness.ArchiveNotes(NotesID, userId);
+            if (result == true)
+            {
+                return this.Ok(new { sucess = true, Message = "Notes Archieved Sucessfully", Result = result });
+
+            }
+            else
+            {
+                return this.NotFound(new { sucess = false, Message = "Notes not found ", Result = result });
+
+            }
+        }
+
+        [Authorize]
+        [HttpPatch]
+        [Route("PinNotes")]
+
+        public IActionResult PinNotes(long NotesID)
+        {
+            long userId = Convert.ToInt64(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+            var result = _notesBusiness.PinNotes(NotesID, userId);
+            if (result == true)
+            {
+                return this.Ok(new { sucess = true, Message = "Notes pined Sucessfully", Result = result });
+
+            }
+            else
+            {
+                return this.NotFound(new { sucess = false, Message = "Notes not found ", Result = result });
+
+            }
+        }
+        [Authorize]
+        [HttpPatch]
+        [Route("TrashNotes")]
+
+        public IActionResult TrashNotes(long NotesID)
+        {
+            long userId = Convert.ToInt64(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+            var result = _notesBusiness.TrashNotes(NotesID, userId);
+            if (result ==true )
+            {
+                return this.Ok(new { sucess = true, Message = "Notes went to Trash Sucessfully", Result = result });
+
+            }
+            else
+            {
+                return this.NotFound(new { sucess = false, Message = "Notes not found ", Result = result });
+
+            }
+        }
 
     }
 }

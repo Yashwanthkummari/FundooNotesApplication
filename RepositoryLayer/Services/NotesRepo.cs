@@ -128,6 +128,77 @@ namespace RepositoryLayer.Services
                 throw;
             }
         }
+        public string UpdateColour(long NotesID, long UserId, string colour)
+        {
+            var result = _fundooContext.Notes.FirstOrDefault(x => x.NoteId == NotesID && x.UserId == UserId);
+
+            if (result != null)
+            {
+                result.Colour = colour;
+                _fundooContext.Notes.Update(result);
+                _fundooContext.SaveChanges();
+
+                return result.Colour;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public bool ArchiveNotes(long NotesID, long UserId)
+        {
+            var result = _fundooContext.Notes.FirstOrDefault(x => x.NoteId == NotesID && x.UserId == UserId);
+
+            if (result != null)
+            {
+                result.IsArchive = true;
+                _fundooContext.Notes.Update(result);
+                _fundooContext.SaveChanges();
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+        public bool PinNotes(long NotesID, long UserId)
+        {
+            var result = _fundooContext.Notes.FirstOrDefault(x => x.NoteId == NotesID && x.UserId == UserId);
+
+            if (result != null)
+            {
+                result.IsPin = true;
+                _fundooContext.Notes.Update(result);
+                _fundooContext.SaveChanges();
+
+                return true;
+            }
+
+
+            else
+            {
+                return false;
+            }
+        }
+        public bool TrashNotes(long NotesID, long UserId)
+        {
+            var result = _fundooContext.Notes.FirstOrDefault(x => x.NoteId == NotesID && x.UserId == UserId);
+
+            if (result != null)
+            {
+                result.IsTrash = true;
+                _fundooContext.Notes.Update(result);
+                _fundooContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+        }
 
     }
 }
