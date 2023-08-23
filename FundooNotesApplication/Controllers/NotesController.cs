@@ -23,12 +23,15 @@ namespace FundooNotesApplication.Controllers
     public class NotesController : ControllerBase
     { 
         private readonly INotesBusiness _notesBusiness;
+        private readonly FundooContext _fundooContext;
         private readonly Cloudinary _cloudinary;
-       
-        public NotesController(INotesBusiness notesBusiness,Cloudinary cloudinary)
+        private readonly IDistributedCache distributedCache;
+        public NotesController(INotesBusiness notesBusiness, FundooContext fundooContext, Cloudinary cloudinary, IDistributedCache distributedCache)
         {
             this._notesBusiness = notesBusiness;
+            this._fundooContext = fundooContext;
             this._cloudinary = cloudinary;
+            this.distributedCache = distributedCache;
         }
         [Authorize]
         [HttpPost]
@@ -219,7 +222,33 @@ namespace FundooNotesApplication.Controllers
 
             }
         }
-      
+        [Authorize]
+        [HttpGet]
+        [Route("Redis")]
+        public async Task<IActionResult> GetAllNotesUsingRedisCache()
+        {
+            var CacheKey = "NotesList";
+            string serializedNotesList;
+            var NotesList = new List<NotesEntity>();
+            var redisNotesList = await distributedCache.GetAsync(CacheKey);
+            if (redisNotesList != null)
+            {
+                serializedNotesList = Encoding.UTF8.GetString(redisNotesList);
+                NotesList = JsonConvert.DeserializeObject<List<NotesEntity>>(serializedNotesList);
+            }
+            else
+            {
+                NotesList = await _fundooContext.Notes.ToListAsync();
+                serializedNotesList = JsonConvert.SerializeObject(NotesList);
+                redisNotesList = Encoding.UTF8.GetBytes(serializedNotesList);
+                var options = new DistributedCacheEntryOptions()
+                              .SetAbsoluteExpiration(DateTime.Now.AddMinutes(20))
+                              .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+                await distributedCache.SetAsync(CacheKey, redisNotesList, options);
+            }
+            return Ok(NotesList);
+
+        }
     }
 }
 
