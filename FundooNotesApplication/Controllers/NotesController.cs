@@ -6,6 +6,15 @@ using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
+using RepositoryLayer.Context;
+using CloudinaryDotNet;
+using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
+using RepositoryLayer.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundooNotesApplication.Controllers
 {
@@ -14,9 +23,12 @@ namespace FundooNotesApplication.Controllers
     public class NotesController : ControllerBase
     { 
         private readonly INotesBusiness _notesBusiness;
-        public NotesController(INotesBusiness notesBusiness)
+        private readonly Cloudinary _cloudinary;
+       
+        public NotesController(INotesBusiness notesBusiness,Cloudinary cloudinary)
         {
             this._notesBusiness = notesBusiness;
+            this._cloudinary = cloudinary;
         }
         [Authorize]
         [HttpPost]
@@ -207,6 +219,7 @@ namespace FundooNotesApplication.Controllers
 
             }
         }
-
+      
     }
 }
+

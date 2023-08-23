@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Services;
@@ -43,6 +44,13 @@ namespace FundooNotesApplication
             services.AddTransient<INotesBusiness, NotesBusiness>();
             services.AddTransient<INotesRepo, NotesRepo>();
             services.AddTransient<FileService, FileService>();
+            services.AddSingleton<RabbitMQPublisher>(_ => new RabbitMQPublisher(new ConnectionFactory
+            {
+                HostName = Configuration["RabbitMQSettings:HostName"],
+                UserName = Configuration["RabbitMQSettings:UserName"],
+                Password = Configuration["RabbitMQSettings:Password"]
+
+            }));
 
             IConfigurationSection configurationSection = Configuration.GetSection("CloudinarySettings");
             Account account = new Account(
@@ -106,7 +114,9 @@ namespace FundooNotesApplication
                                            "dfjtq6pm0",//CloudinaryName
                                            "891343748812318",//Cloudinary API key
                                            "tzwsJF6gJL8gQJt5qvw7LP4640E");//Cloudinary API Secret
+                
             });
+            
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
