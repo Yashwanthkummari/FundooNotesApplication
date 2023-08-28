@@ -238,7 +238,8 @@ namespace FundooNotesApplication.Controllers
             }
             else
             {
-                NotesList = await _fundooContext.Notes.ToListAsync();
+                long userId = Convert.ToInt64(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
+                NotesList= _notesBusiness.GetAllNotes(userId);
                 serializedNotesList = JsonConvert.SerializeObject(NotesList);
                 redisNotesList = Encoding.UTF8.GetBytes(serializedNotesList);
                 var options = new DistributedCacheEntryOptions()

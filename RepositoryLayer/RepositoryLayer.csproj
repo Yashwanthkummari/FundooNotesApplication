@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommonLayer\CommonLayer.csproj" />
+    <ProjectReference Include="..\FundooSubscriber\FundooSubscriber.csproj" />
   </ItemGroup>
 
 </Project>

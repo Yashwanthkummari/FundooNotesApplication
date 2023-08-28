@@ -3026,6 +3026,25 @@
           "bin/placeholder/CommonLayer.dll": {}
         }
       },
+      "FundooSubscriber/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "CommonLayer": "1.0.0",
+          "MassTransit": "8.1.0",
+          "MassTransit.AspNetCore": "7.3.1",
+          "MassTransit.RabbitMQ": "8.1.0",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "RabbitMQ.Client": "6.5.0"
+        },
+        "compile": {
+          "bin/placeholder/FundooSubscriber.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FundooSubscriber.dll": {}
+        }
+      },
       "RepositoryLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -3033,6 +3052,7 @@
           "CloudinaryDotNet": "1.22.0",
           "CommonLayer": "1.0.0",
           "Experimental.System.Messaging": "1.1.0",
+          "FundooSubscriber": "1.0.0",
           "MassTransit": "8.1.0",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.RabbitMQ": "8.1.0",
@@ -9372,6 +9392,11 @@
       "type": "project",
       "path": "../CommonLayer/CommonLayer.csproj",
       "msbuildProject": "../CommonLayer/CommonLayer.csproj"
+    },
+    "FundooSubscriber/1.0.0": {
+      "type": "project",
+      "path": "../FundooSubscriber/FundooSubscriber.csproj",
+      "msbuildProject": "../FundooSubscriber/FundooSubscriber.csproj"
     },
     "RepositoryLayer/1.0.0": {
       "type": "project",

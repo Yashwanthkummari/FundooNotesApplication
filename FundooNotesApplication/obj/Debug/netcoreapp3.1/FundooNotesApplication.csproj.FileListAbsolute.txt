@@ -103,3 +103,9 @@ F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\RabbitM
 F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.deps.json
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.runtimeconfig.json
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.runtimeconfig.dev.json
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.exe
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.dll
+F:\FundooNotesApplication\FundooNotesApplication\bin\Debug\netcoreapp3.1\FundooSubscriber.pdb

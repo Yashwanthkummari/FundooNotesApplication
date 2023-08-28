@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Models;
+using FundooSubscriber.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -43,9 +44,9 @@ namespace RepositoryLayer.Services
 
                 if (userEntity != null)
                 {
-                    var message = new UserRegMessage { Email = userEntity.Email };
+                    /*var message = new UserRegistrationMesssage { Email = userEntity.Email };
                     var jsonMessage = JsonConvert.SerializeObject(message);
-                    rabbitMQPublisher.PublishMessage("User-Registration-Queue", jsonMessage);
+                    rabbitMQPublisher.PublishMessage("User-Registration-Queue", jsonMessage);*/
                     return userEntity;
                 }
                 else

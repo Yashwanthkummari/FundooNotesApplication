@@ -13,3 +13,9 @@ F:\FundooNotesApplication\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.cs
 F:\FundooNotesApplication\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CopyComplete
 F:\FundooNotesApplication\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.dll
 F:\FundooNotesApplication\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.pdb
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.deps.json
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.runtimeconfig.json
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.runtimeconfig.dev.json
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.exe
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.dll
+F:\FundooNotesApplication\BusinessLayer\bin\Debug\netcoreapp3.1\FundooSubscriber.pdb
